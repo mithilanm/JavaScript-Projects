@@ -25,10 +25,6 @@ function generateCat() {
   div.appendChild(image);
 }
 
-function reset2() {
-  location.reload();
-}
-
 //Challenge 3: Rock, Paper, Scissors
 function rpsGame(yourChoice) {
   //console.log(yourChoice.id);
@@ -107,4 +103,54 @@ function rpsFrontEnd(humanImageChoice, botImageChoice, finalMessage) {
     imagesDatabase[botImageChoice] +
     "'height=150 width=150 style='box-shadow: 0px 10px 50px rgba(243,38,24,1);'>";
   document.getElementById("flex-box-rps-div").appendChild(botDiv);
+}
+
+// Challenge 4: Change the Color of All Buttons
+var all_buttons = document.getElementsByTagName("button");
+console.log(all_buttons);
+
+var copyAllButtons = [];
+for (let i = 0; i < all_buttons.length; i++) {
+  copyAllButtons.push(all_buttons[i].classList[1]);
+}
+
+function buttonColorChange(button) {
+  if (button.value === "red") {
+    buttonsRed();
+  } else if (button.value === "green") {
+    buttonsGreen();
+  } else if (button.value === "reset") {
+    buttonColorReset();
+  } else if (button.value === "random") {
+    randomColors();
+  }
+}
+
+function buttonsRed() {
+  for (let i = 0; i < all_buttons.length; i++) {
+    all_buttons[i].classList.remove(all_buttons[i].classList[1]);
+    all_buttons[i].classList.add("btn-danger");
+  }
+}
+
+function buttonsGreen() {
+  for (let i = 0; i < all_buttons.length; i++) {
+    all_buttons[i].classList.remove(all_buttons[i].classList[1]);
+    all_buttons[i].classList.add("btn-success");
+  }
+}
+
+function buttonColorReset() {
+  for (let i = 0; i < all_buttons.length; i++) {
+    all_buttons[i].classList.remove(all_buttons[i].classList[1]);
+    all_buttons[i].classList.add(copyAllButtons[i]);
+  }
+}
+
+function randomColors() {
+  let choices = ["btn-primary", "btn-danger", "btn-success", "btn-warning"];
+  for (let i = 0; i < all_buttons.length; i++) {
+    all_buttons[i].classList.remove(all_buttons[i].classList[1]);
+    all_buttons[i].classList.add(choices[Math.floor(Math.random() * 4)]);
+  }
 }
